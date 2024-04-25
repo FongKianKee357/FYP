@@ -98,7 +98,7 @@ include 'components/wishlist_cart.php';
       <h3>New Figure</h3>
    </a>
 
-   <a href="category.php?category=gunpla" class="swiper-slide slide">
+   <a href="category.php?category=gundam" class="swiper-slide slide">
       <h3>Gunpla</h3>
    </a>
 
@@ -114,7 +114,7 @@ include 'components/wishlist_cart.php';
       <h3>Scale Figures</h3>
    </a>
 
-   <a href="category.php?category=accessories" class="swiper-slide slide">
+   <a href="category.php?category=acc" class="swiper-slide slide">
       <h3>Accessories</h3>
    </a>
 

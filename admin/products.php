@@ -108,27 +108,27 @@ if(isset($_GET['delete'])){
    <form action="" method="post" enctype="multipart/form-data">
       <div class="flex">
          <div class="inputBox">
-            <span>product name (required)</span>
+            <span>Product Name (required)</span>
             <input type="text" class="box" required maxlength="100" placeholder="enter product name" name="name">
          </div>
          <div class="inputBox">
-            <span>product price (required)</span>
+            <span>Product Price (required)</span>
             <input type="number" min="0" class="box" required max="9999999999" placeholder="enter product price" onkeypress="if(this.value.length == 10) return false;" name="price">
          </div>
         <div class="inputBox">
-            <span>image 01 (required)</span>
+            <span>Image 01 (required)</span>
             <input type="file" name="image_01" accept="image/jpg, image/jpeg, image/png, image/webp" class="box" required>
         </div>
         <div class="inputBox">
-            <span>image 02 (required)</span>
+            <span>Image 02 (required)</span>
             <input type="file" name="image_02" accept="image/jpg, image/jpeg, image/png, image/webp" class="box" required>
         </div>
         <div class="inputBox">
-            <span>image 03 (required)</span>
+            <span>Image 03 (required)</span>
             <input type="file" name="image_03" accept="image/jpg, image/jpeg, image/png, image/webp" class="box" required>
         </div>
          <div class="inputBox">
-            <span>product details (required)</span>
+            <span>Product Details (required)</span>
             <textarea name="details" placeholder="enter product details" class="box" required maxlength="500" cols="30" rows="10"></textarea>
          </div>
       </div>
