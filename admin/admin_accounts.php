@@ -1,3 +1,5 @@
+<!-- admin accounts : admin1 -->
+<!-- admin password : 111 -->
 <?php
 
 include '../components/connect.php';
