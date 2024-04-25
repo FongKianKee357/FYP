@@ -313,13 +313,13 @@ section{
 }
 
 .add-products form .flex{
-   display: flex;
    gap:1.5rem;
    flex-wrap: wrap;
 }
 
 .add-products form .flex .inputBox{
-   flex:1 1 25rem;
+   flex:1 1 40rem;
+   margin-bottom: 14.5px;
 } 
 
 .add-products form span{
@@ -337,7 +337,7 @@ section{
 }
 
 .add-products form textarea{
-   height: 5.4rem;
+   height: 14rem;
    resize: none;
 }
 
@@ -536,19 +536,6 @@ section{
 .contacts .box-container .box p span{
    color:var(--main-color);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
