@@ -139,6 +139,7 @@ section{
    border-radius: .5rem;
    font-size: 2rem;
    text-transform: capitalize;
+   margin: 0 auto;
 }
 
 .disabled{
@@ -613,6 +614,14 @@ section{
    max-width: 50rem;
 }
 
+.form-container{
+   background: url(../images/login-img.png) ;
+   background-size: cover;
+   background-position: center;
+   max-width: 100%;
+   padding: 65px;
+}
+
 .form-container form h3{
    font-size: 2.5rem;
    text-transform: uppercase;
@@ -713,6 +722,13 @@ section{
 .reviews .slide h3{
    font-size: 2rem;
    color:var(--black);
+}
+
+.contact{
+   background: url(../images/contact-bg.jpg) no-repeat;
+   background-size: cover;
+   background-position: center;
+   max-width: 100%
 }
 
 .contact form{
