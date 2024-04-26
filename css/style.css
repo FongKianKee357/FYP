@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
 
 :root{
-   --main-color:#2980b9;
+   --main-color:#0d97dc;
+   --viking:#4adede;
    --orange:#f39c12;
    --red:#e74c3c;
    --black:#333;
@@ -168,7 +169,7 @@ section{
 .header{
    position: sticky;
    top:0; left:0; right:0;
-   background-color: var(--white);
+   background-color: var(--viking);
    box-shadow: var(--box-shadow);
    z-index: 1000;
 }
@@ -246,7 +247,7 @@ section{
 }
 
 .home-bg{
-   background:url(../images/home-bg.png) no-repeat;
+   background:url(../images/home-bg.jpg) no-repeat;
    background-size: cover;
    background-position: center;
 }
