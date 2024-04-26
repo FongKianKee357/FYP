@@ -15,14 +15,14 @@
 
    <section class="flex">
 
-      <a href="home.php" class="logo">Boutique Handcraft <span>Model House</span></a>
+      <a href="home.php" class="logo">Boutique Handcraft Model House</a>
 
       <nav class="navbar">
-         <a href="home.php">home</a>
-         <a href="about.php">about</a>
-         <a href="orders.php">orders</a>
-         <a href="shop.php">shop</a>
-         <a href="contact.php">contact</a>
+         <a href="home.php">Home</a>
+         <a href="about.php">About</a>
+         <a href="orders.php">Orders</a>
+         <a href="shop.php">Shop</a>
+         <a href="contact.php">Contact</a>
       </nav>
 
       <div class="icons">
@@ -59,7 +59,7 @@
          <?php
             }else{
          ?>
-         <p>please login or register first!</p>
+         <p>Please login or register first!</p>
          <div class="flex-btn">
             <a href="user_register.php" class="option-btn">register</a>
             <a href="user_login.php" class="option-btn">login</a>
