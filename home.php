@@ -140,7 +140,7 @@ include 'components/wishlist_cart.php';
      if($select_products->rowCount() > 0){
       while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
    ?>
-   <form action="" method="post" class="swiper-slide slide">
+   <form action="" method="post" class="swiper-slide slide" style="height: auto;">
       <input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
       <input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
       <input type="hidden" name="price" value="<?= $fetch_product['price']; ?>">

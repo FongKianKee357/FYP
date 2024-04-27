@@ -15,7 +15,7 @@
 
    <section class="flex">
 
-      <a href="home.php" class="logo">Boutique Handcraft Model House</a>
+      <a href="home.php" class="logo"><span>Boutique Handcraft Model House</span></a>
 
       <nav class="navbar">
          <a href="home.php">Home</a>

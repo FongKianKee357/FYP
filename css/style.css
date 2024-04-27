@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
 
 :root{
-   --main-color:#0d97dc;
+   --main-color:#0864af;
    --viking:#4adede;
    --orange:#f39c12;
    --red:#e74c3c;
@@ -358,6 +358,11 @@ section{
 .home-products .slide .name{
    font-size: 2rem;
    color:var(--black);
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   text-overflow: ellipsis;
 }
 
 .home-products .slide .flex{
