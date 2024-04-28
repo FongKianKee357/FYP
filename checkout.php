@@ -42,6 +42,13 @@ if(isset($_POST['order'])){
       $message[] = 'your cart is empty';
    }
 
+   if($method == 'TNG eWallet'){
+      header('location:payment.html');
+   }else if($method == 'Pay with card'){
+   header('location:https://buy.stripe.com/00g9Ed5o7es80CI144');
+   }else{
+      header('orders.php');
+   }
 }
 
 ?>
@@ -97,6 +104,7 @@ if(isset($_POST['order'])){
 
       <h3>place your orders</h3>
 
+      <form id="checkoutForm" action="" method="post">
       <div class="flex">
          <div class="inputBox">
             <span>Your Name :</span>
@@ -113,11 +121,9 @@ if(isset($_POST['order'])){
          <div class="inputBox">
             <span>Payment Method :</span>
             <select name="method" class="box" required>
-               <option value="cash on delivery">Cash on delivery</option>
+               <option value="Cash on delivery">Cash on delivery</option>
                <option value="TNG eWallet">TNG eWallet</option>
-               <option value="GrabPay">GrabPay</option>
-               <option value="paytm">Credit Card</option>
-               <option value="paypal">PayPal</option>
+               <option value="Pay with card">Pay with card</option>
             </select>
          </div>
          <div class="inputBox">

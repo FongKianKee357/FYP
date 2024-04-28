@@ -585,6 +585,11 @@ section{
 .products .box-container .box .name{
    font-size: 2rem;
    color:var(--black);
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   text-overflow: ellipsis;
 }
 
 .products .box-container .box .flex{
