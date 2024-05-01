@@ -43,11 +43,11 @@ if(isset($_POST['order'])){
    }
 
    if($method == 'TNG eWallet'){
-      header('location:payment.html');
+      header('location:payment.php');
    }else if($method == 'Pay with card'){
    header('location:https://buy.stripe.com/00g9Ed5o7es80CI144');
    }else{
-      header('orders.php');
+      header('location:orders.php');
    }
 }
 
