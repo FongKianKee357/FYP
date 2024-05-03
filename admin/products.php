@@ -112,8 +112,8 @@ if(isset($_GET['delete'])){
             <input type="text" class="box" required maxlength="100" placeholder="enter product name" name="name">
          </div>
          <div class="inputBox">
-            <span>Product Price (required)</span>
-            <input type="number" min="0" class="box" required max="9999999999" placeholder="enter product price" onkeypress="if(this.value.length == 10) return false;" name="price">
+            <span>Product Price (RM)</span>
+            <input type="number" min="0" class="box" required max="9999999999" placeholder="enter product price"  onkeypress="if(this.value.length == 10) return false;" name="price">
          </div>
         <div class="inputBox">
             <span>Image 01 (required)</span>
