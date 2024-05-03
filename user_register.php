@@ -25,16 +25,33 @@ if(isset($_POST['submit'])){
    $select_user->execute([$email,]);
    $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
+   function hasSpecialCharacter($password) {
+      $specialChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+      return preg_match('/[' . preg_quote($specialChars, '/') . ']/', $password);
+   }
+
+   $valid = true;
+
    if($select_user->rowCount() > 0){
       $message[] = 'email already exists!';
-   }else{
-      if($pass != $cpass){
-         $message[] = 'confirm password not matched!';
-      }else{
-         $insert_user = $conn->prepare("INSERT INTO `users`(name, email, password) VALUES(?,?,?)");
-         $insert_user->execute([$name, $email, $cpass]);
-         $message[] = 'registered successfully, login now please!';
-      }
+      $valid = false; 
+   }
+
+   if($pass != $cpass) {
+      $message[] = 'Confirm password not matched!';
+      $valid = false; 
+   } elseif(strlen($_POST['pass']) < 6) {
+      $message[] = 'Password is too short (minimum is 6 characters)';
+      $valid = false; 
+   } elseif(!hasSpecialCharacter($_POST['pass'])) {
+      $message[] = 'Password must contain at least one special character';
+      $valid = false; 
+   }
+
+   if($valid != false) {
+      $insert_user = $conn->prepare("INSERT INTO `users`(name, email, password) VALUES(?,?,?)");
+      $insert_user->execute([$name, $email, $cpass]);
+      $message[] = 'registered successfully, login now please!';
    }
 
 }
@@ -64,10 +81,10 @@ if(isset($_POST['submit'])){
 
    <form action="" method="post">
       <h3>register now</h3>
-      <input type="text" name="name" required placeholder="enter your username" maxlength="20"  class="box">
-      <input type="email" name="email" required placeholder="enter your email" maxlength="50"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="pass" required placeholder="enter your password" maxlength="20" min="8" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="cpass" required placeholder="confirm your password" maxlength="20" min="8" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="text" name="name" required placeholder="Enter your username" maxlength="20"  class="box">
+      <input type="email" name="email" required placeholder="Enter your email" maxlength="50"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" name="pass" required placeholder="Enter your password" maxlength="50" minlength="6" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" name="cpass" required placeholder="Confirm your password" maxlength="50" minlength="6" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="submit" value="register now" class="btn" name="submit">
       <p>already have an account?</p>
       <a href="user_login.php" class="option-btn">login now</a>
