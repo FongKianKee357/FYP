@@ -21,7 +21,7 @@
       <div class="box">
          <h3>contact us</h3>
          <a href="tel:60197753357"><i class="fas fa-phone"></i> +6019-7753357</a>
-         <a href="tel:60197753357"><i class="fas fa-phone"></i> +6019-7753357</a>
+         <a href="tel:60164201170"><i class="fas fa-phone"></i> +6016-4201170</a>
          <a href="mailto:BHmodelhouse@gmail.com"><i class="fas fa-envelope"></i> BHmodelhouse@gmail.com</a>
          <a href="https://www.google.com/myplace"><i class="fas fa-map-marker-alt"></i> Melaka, Malaysia </a>
       </div>
