@@ -26,6 +26,7 @@ include 'components/wishlist_cart.php';
    
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
@@ -42,7 +43,7 @@ include 'components/wishlist_cart.php';
    <div class="swiper home-slider">
    
    <div class="swiper-wrapper">
-
+   
       <div class="swiper-slide slide">
          <div class="image">
             <img src="images/homeimg-1.png" alt="">
@@ -75,7 +76,6 @@ include 'components/wishlist_cart.php';
             <a href="shop.php" class="btn">shop now</a>
          </div>
       </div>
-
    </div>
 
       <div class="swiper-pagination"></div>
