@@ -222,7 +222,6 @@ var swiper = new Swiper(".products-slider", {
    loop:true,
    spaceBetween: 20,
    pagination: {
-      el: ".swiper-pagination",
       clickable:true,
    },
    breakpoints: {
@@ -237,6 +236,26 @@ var swiper = new Swiper(".products-slider", {
       },
    },
 });
+
+let  _direction = true;
+let _move = () => {
+    let slider = document.querySelector('.products-slider');
+    
+    slider.scrollLeft += 393.2;
+    
+    if (slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth)) {
+        slider.scrollLeft = 0;
+    }
+}
+
+let timer = setInterval(_move, 3000);
+document.querySelector('.products-slider').addEventListener('mouseover', () => {
+    clearInterval(timer);
+});
+document.querySelector('.products-slider').addEventListener('mouseout', () => {
+    timer = setInterval(_move, 3000);
+});
+
 
 </script>
 
