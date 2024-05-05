@@ -193,6 +193,11 @@ var swiper = new Swiper(".home-slider", {
       el: ".swiper-pagination",
       clickable:true,
     },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    speed: 650,
 });
 
  var swiper = new Swiper(".category-slider", {
@@ -216,6 +221,11 @@ var swiper = new Swiper(".home-slider", {
         slidesPerView: 5,
       },
    },
+   autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    speed: 650,
 });
 
 var swiper = new Swiper(".products-slider", {
@@ -235,25 +245,19 @@ var swiper = new Swiper(".products-slider", {
         slidesPerView: 3,
       },
    },
+   autoplay: {
+      delay: 3000, 
+      disableOnInteraction: false, 
+    },
+    speed: 800,
 });
 
-let  _direction = true;
-let _move = () => {
-    let slider = document.querySelector('.products-slider');
-    
-    slider.scrollLeft += 393.2;
-    
-    if (slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth)) {
-        slider.scrollLeft = 0;
-    }
-}
-
-let timer = setInterval(_move, 3000);
-document.querySelector('.products-slider').addEventListener('mouseover', () => {
-    clearInterval(timer);
+swiper.el.addEventListener('mouseenter', function () {
+    swiper.autoplay.stop();
 });
-document.querySelector('.products-slider').addEventListener('mouseout', () => {
-    timer = setInterval(_move, 3000);
+
+swiper.el.addEventListener('mouseleave', function () {
+    swiper.autoplay.start();
 });
 
 
