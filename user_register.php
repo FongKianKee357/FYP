@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
    $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
    function hasSpecialCharacter($password) {
-      $specialChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+      $specialChars = '/!@#$%^&*()_+-=[]{}|;:,.<>?';
       return preg_match('/[' . preg_quote($specialChars, '/') . ']/', $password);
    }
 
