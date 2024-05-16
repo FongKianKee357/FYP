@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
    $valid = true;
 
    if($select_user->rowCount() > 0){
-      $message[] = 'email already exists!';
+      $message[] = 'Email already exists!';
       $valid = false; 
    }
 
@@ -50,10 +50,9 @@ if(isset($_POST['submit'])){
 
    if($valid != false) {
       $insert_user = $conn->prepare("INSERT INTO `users`(name, email, password) VALUES(?,?,?)");
-      $insert_user->execute([$name, $email, $cpass]);
+      $insert_user->execute([$name, $email, $pass]);
       $message[] = 'registered successfully, login now please!';
    }
-
 }
 
 ?>
