@@ -48,10 +48,10 @@ if(isset($_POST['submit'])){
       $valid = false; 
    }
 
-   if($valid != false) {
+   if($valid) {
       $insert_user = $conn->prepare("INSERT INTO `users`(name, email, password) VALUES(?,?,?)");
       $insert_user->execute([$name, $email, $pass]);
-      $message[] = 'registered successfully, login now please!';
+      $message[] = 'Registered successfully, login now please!';
    }
 }
 
