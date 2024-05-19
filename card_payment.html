@@ -141,7 +141,6 @@ input[type=radio]:checked ~ .radio::before {
   border: none;
   outline: none;
   margin-left: 50px;
-  color: white;
 }
 .cardholder .info input::-moz-placeholder, .number .info input::-moz-placeholder {
   font-family: "Source Code Pro";
@@ -216,7 +215,6 @@ input[type=radio]:checked ~ .radio::before {
   background: transparent;
   border: none;
   outline: none;
-  color: #fff;
 }
 .details .right input::-moz-placeholder {
   font-family: "Source Code Pro";
@@ -287,13 +285,13 @@ input[type=radio]:checked ~ .radio::before {
             <div class="row cardholder">
                 <div class="info">
                     <label for="cardholdername">Name</label>
-                    <input placeholder="e.g. Richard Bovell" id="cardholdername" type="text" />
+                    <input placeholder="Enter Your Name" id="cardholdername" type="text" />
                 </div>
             </div>
             <div class="row number">
                 <div class="info">
                     <label for="cardnumber">Card number</label>
-                    <input id="cardnumber" type="text" pattern="[0-9]{16,19}" maxlength="19" placeholder="8888-8888-8888-8888" />
+                    <input id="cardnumber" type="text" pattern="[0-9]{16,19}" maxlength="19" placeholder="0000-0000-0000-0000" />
                 </div>
             </div>
             <div class="row details">
