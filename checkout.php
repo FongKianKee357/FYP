@@ -45,7 +45,7 @@ if(isset($_POST['order'])){
    if($method == 'TNG eWallet'){
       header('location:payment.php');
    }else if($method == 'Pay with card'){
-   header('location:https://buy.stripe.com/00g9Ed5o7es80CI144');
+   header('location:card_payment.php');
    }else{
       header('location:orders.php');
    }
@@ -99,7 +99,7 @@ if(isset($_POST['order'])){
       ?>
          <input type="hidden" name="total_products" value="<?= $total_products; ?>">
          <input type="hidden" name="total_price" value="<?= $grand_total; ?>" value="">
-         <div class="grand-total">grand total : <span>RM<?= $grand_total; ?></span></div>
+         <div class="grand-total">Grand Total : <span>RM<?= $grand_total; ?></span></div>
       </div>
 
       <h3>place your orders</h3>

@@ -1,3 +1,18 @@
+<?php
+
+include 'components/connect.php';
+
+session_start();
+
+if(isset($_SESSION['user_id'])){
+  $user_id = $_SESSION['user_id'];
+}else{
+  $user_id = '';
+  header('location:user_login.php');
+};
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -267,10 +282,26 @@ input[type=radio]:checked ~ .radio::before {
     </style>
 </head>
 <body>
+
 <div class="container">
-    <div class="price">
-        <h1>Total  RM 99.99 </h1>
-    </div>
+
+<?php
+
+         $select_orders = $conn->prepare("SELECT * FROM `orders` WHERE user_id = ?");
+         $select_orders->execute([$user_id]);
+
+         $total_price = 0;
+
+         if($select_orders->rowCount() > 0){
+            while($fetch_orders = $select_orders->fetch(PDO::FETCH_ASSOC)){
+              $total_price = $fetch_orders['total_price'];
+      }
+      }
+   ?>
+
+<div class="price">
+      <h1>Total Price : <span>RM<?= $total_price; ?></span></h1>
+   </div>
     <div class="card__container">
         <div class="card">
             <div class="row credit">
@@ -339,7 +370,8 @@ input[type=radio]:checked ~ .radio::before {
         </div>
     </div>
     <div class="button">
-        <button type="submit"><i class="ion-locked"></i> Confirm and Pay</button>
+        <button type="submit" onclick="location.href='orders.php'"><i class="ion-locked"></i> Confirm and Pay</button>
+
     </div>
 </div>
 </body>
