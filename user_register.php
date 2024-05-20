@@ -53,8 +53,7 @@ if(isset($_POST['submit'])){
       $insert_user->execute([$name, $email, $pass]);
       $message[] = 'Registered successfully, login now please!';
    }
-}
-
+}     
 ?>
 
 <!DOCTYPE html>
@@ -94,6 +93,16 @@ if(isset($_POST['submit'])){
 <?php include 'components/footer.php'; ?>
 
 <script src="js/script.js"></script>
+<script>
+   setTimeout(function() 
+   {
+      var errorMessages = document.querySelectorAll('.message');
+      errorMessages.forEach(function(errorMessage) 
+      {
+         errorMessage.style.display = 'none';
+      });
 
+   }, 3000);
+</script>
 </body>
 </html>
