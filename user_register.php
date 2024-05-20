@@ -88,20 +88,8 @@ if(isset($_POST['submit'])){
       <p>already have an account?</p>
       <a href="user_login.php" class="option-btn">login now</a>
    </form>
-
+   
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include 'components/footer.php'; ?>
 
