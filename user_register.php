@@ -53,8 +53,7 @@ if(isset($_POST['submit'])){
       $insert_user->execute([$name, $email, $pass]);
       $message[] = 'Registered successfully, login now please!';
    }
-}
-
+}     
 ?>
 
 <!DOCTYPE html>
@@ -88,24 +87,22 @@ if(isset($_POST['submit'])){
       <p>already have an account?</p>
       <a href="user_login.php" class="option-btn">login now</a>
    </form>
-
+   
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include 'components/footer.php'; ?>
 
 <script src="js/script.js"></script>
+<script>
+   setTimeout(function() 
+   {
+      var errorMessages = document.querySelectorAll('.message');
+      errorMessages.forEach(function(errorMessage) 
+      {
+         errorMessage.style.display = 'none';
+      });
 
+   }, 3000);
+</script>
 </body>
 </html>
