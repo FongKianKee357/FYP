@@ -363,6 +363,7 @@ section{
    -webkit-line-clamp: 2;
    -webkit-box-orient: vertical;
    text-overflow: ellipsis;
+   height: 35px;
 }
 
 .home-products .slide .flex{
@@ -1027,6 +1028,67 @@ section{
 
 .footer .credit span{
    color:var(--main-color);
+}
+
+.profile_container{
+   border: 2px solid black;
+   display: flex;
+   width: 900px;
+   margin: 0 auto;
+}
+
+.sidebar{
+   padding: 20px;
+   padding-top: 82px;
+   background-color: #fff;
+   border-right: 2px solid #f0f0f0;
+}
+
+.sidebar a{
+   display: block;
+   padding: 10px;
+   text-decoration: none;
+   color: #333;
+   font-size: 18px;
+   border-bottom: 2px solid #f0f0f0;
+}
+
+.sidebar a:hover{
+   background-color: #f0f0f0;
+   border-radius: 5px;
+}
+
+.profile_container form{
+   background-color: white;
+   padding: 25px;
+   box-shadow: var(--box-shadow);
+   text-align: center;
+   margin:0 auto;
+   max-width: 100%;
+}
+
+.form-container-f{
+   background: url(./images/login-img.png) ;
+   background-size: cover;
+   background-position: center;
+   max-width: 100%;
+   padding: 65px;
+}
+
+.form-container-f form h3{
+   font-size: 34px;
+   text-transform: uppercase;
+   color: black;
+}
+
+.form-container-f form .box{
+   margin:10px 0;
+   background-color: var(--light-bg);
+   padding:13px;
+   font-size: 18px;
+   color:var(--black);  
+   width: 100%;
+   border-radius: 5px;
 }
 
 
