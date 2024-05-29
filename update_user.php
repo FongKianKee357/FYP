@@ -12,59 +12,47 @@ if(isset($_SESSION['user_id'])){
 
 if (isset($_POST['submit'])) {
 
-   if (!empty($_POST['name']) || !empty($_POST['email'])) {
-      $name = $_POST['name'];
-      $name = filter_var($name, FILTER_SANITIZE_STRING);
-      $email = $_POST['email'];
-      $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $name = $_POST['name'];
+   $name = filter_var($name, FILTER_SANITIZE_STRING);
+   $email = $_POST['email'];
+   $email = filter_var($email, FILTER_SANITIZE_STRING);
    
-      $update_profile = $conn->prepare("UPDATE `users` SET name = ?, email = ? WHERE id = ?");
+   $update_profile = $conn->prepare("UPDATE `users` SET name = ?, email = ? WHERE id = ?");
+   $update_profile->execute([$name, $email, $user_id]);
    
-      if($update_profile->execute([$name, $email, $user_id])){
-         $message[] = 'Profile updated successfully!';
-      }
-   }
-   
-if (!empty($_POST['phoneNum'])) {
-    $phoneNum = $_POST['phoneNum'];
-    $phoneNum = filter_var($phoneNum, FILTER_SANITIZE_STRING);
+   $phoneNum = $_POST['phoneNum'];
+   $phoneNum = filter_var($phoneNum, FILTER_SANITIZE_STRING);
 
    $update_phoneNum = $conn->prepare("UPDATE `users` SET phoneNum = ? WHERE id = ?");
-
-   if ($update_phoneNum->execute([$phoneNum, $user_id])) {
-         $message[] = 'Phone Number updated successfully!';
-   }else{
-               $message[] = 'Error updating phone number!';
-   }
-}
-  
+   $update_phoneNum->execute([$phoneNum, $user_id]);
 
    if (!empty($_POST['old_pass']) || !empty($_POST['new_pass']) || !empty($_POST['cpass'])) {
-       $empty_pass = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
-       $prev_pass = $_POST['prev_pass'];
-       $old_pass = sha1($_POST['old_pass']);
-       $old_pass = filter_var($old_pass, FILTER_SANITIZE_STRING);
-       $new_pass = sha1($_POST['new_pass']);
-       $new_pass = filter_var($new_pass, FILTER_SANITIZE_STRING);
-       $cpass = sha1($_POST['cpass']);
-       $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+      $empty_pass = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
+      $prev_pass = $_POST['prev_pass'];
+      $old_pass = sha1($_POST['old_pass']);
+      $old_pass = filter_var($old_pass, FILTER_SANITIZE_STRING);
+      $new_pass = sha1($_POST['new_pass']);
+      $new_pass = filter_var($new_pass, FILTER_SANITIZE_STRING);
+      $cpass = sha1($_POST['cpass']);
+      $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
 
-       if ($old_pass == $empty_pass) {
-           $message[] = 'Please enter old password!';
-       } elseif ($old_pass != $prev_pass) {
-           $message[] = 'Old password not matched!';
-       } elseif ($new_pass != $cpass) {
-           $message[] = 'Confirm password not matched!';
-       } else {
-           if ($new_pass != $empty_pass) {
-               $update_user_pass = $conn->prepare("UPDATE `users` SET password = ? WHERE id = ?");
-               $update_user_pass->execute([$cpass, $user_id]);
-               $message[] = 'Password updated successfully!';
-           } else {
-               $message[] = 'Please enter a new password!';
-           }
-       }
-   }
+      if ($old_pass == $empty_pass) {
+          $message[] = 'Please enter old password!';
+      } elseif ($old_pass != $prev_pass) {
+          $message[] = 'Old password not matched!';
+      } elseif ($new_pass != $cpass) {
+          $message[] = 'Confirm password not matched!';
+      } else {
+          if ($new_pass != $empty_pass) {
+              $update_admin_pass = $conn->prepare("UPDATE `users` SET password = ? WHERE id = ?");
+              $update_admin_pass->execute([$cpass, $user_id]);
+              $message[] = 'Password updated successfully!';
+          } else {
+              $message[] = 'Please enter a new password!';
+          }
+      }
+  }
+      $message[] = 'Profile updated successfully!';
 }
 
 if (isset($_POST['submit_a'])) {
