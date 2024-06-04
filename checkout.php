@@ -9,6 +9,7 @@ if(isset($_SESSION['user_id'])){
 }else{
    $user_id = '';
    header('location:user_login.php');
+   exit;
 };
 
 if(isset($_POST['order'])){
@@ -45,10 +46,11 @@ if(isset($_POST['order'])){
    if($method == 'TNG eWallet'){
       header('location:payment.php');
    }else if($method == 'Pay with card'){
-   header('location:card_payment.php');
+      header('location:card_payment.php');
    }else{
       header('location:orders.php');
    }
+   exit;
 }
 
 ?>
@@ -81,94 +83,122 @@ if(isset($_POST['order'])){
       <div class="display-orders">
       <?php
          $grand_total = 0;
-         $cart_items[] = '';
+         $cart_items = [];  // Initialize cart_items as an array
          $select_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
          $select_cart->execute([$user_id]);
          if($select_cart->rowCount() > 0){
             while($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)){
                $cart_items[] = $fetch_cart['name'].' ('.$fetch_cart['price'].' x '. $fetch_cart['quantity'].') - ';
-               $total_products = implode($cart_items);
                $grand_total += ($fetch_cart['price'] * $fetch_cart['quantity']);
-      ?>
-         <p> <?= $fetch_cart['name']; ?> <span>(<?= 'RM'.$fetch_cart['price'].' x '. $fetch_cart['quantity']; ?>)</span> </p>
-      <?php
             }
+            $total_products = implode($cart_items);  // Move this line out of the while loop
          }else{
             echo '<p class="empty">your cart is empty!</p>';
          }
       ?>
-         <input type="hidden" name="total_products" value="<?= $total_products; ?>">
-         <input type="hidden" name="total_price" value="<?= $grand_total; ?>" value="">
+         <input type="hidden" name="total_products" value="<?= htmlspecialchars($total_products); ?>">
+         <input type="hidden" name="total_price" value="<?= $grand_total; ?>">
          <div class="grand-total">Grand Total : <span>RM<?= $grand_total; ?></span></div>
       </div>
 
       <h3>place your orders</h3>
 
       <form id="checkoutForm" action="" method="post">
-      <div class="flex">
+        <div class="flex">
          <div class="inputBox">
-            <span>Your Name :</span>
-            <input type="text" name="name" placeholder="enter your name" class="box" maxlength="20" required>
-         </div>
-         <div class="inputBox">
-            <span>Your Contact Number :</span>
-            <input type="number" name="number" placeholder="enter your contact number" class="box" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false;" required >
-         </div>
-         <div class="inputBox">
-            <span>Your Email :</span>
-            <input type="email" name="email" placeholder="enter your email" class="box" maxlength="50" required>
-         </div>
-         <div class="inputBox">
-            <span>Payment Method :</span>
-            <select name="method" class="box" required>
-               <option value="Cash on delivery">Cash on delivery</option>
-               <option value="TNG eWallet">TNG eWallet</option>
-               <option value="Pay with card">Pay with card</option>
-            </select>
-         </div>
-         <div class="inputBox">
-            <span>Address line 1 :</span>
-            <input type="text" name="flat" placeholder="*Address 1" class="box" maxlength="50" required>
-         </div>
-         <div class="inputBox">
-            <span>Address line 2 :</span>
-            <input type="text" name="street" placeholder="*Address 2" class="box" maxlength="50" required>
-         </div>
-         <div class="inputBox">
-            <span>City :</span>
-            <input type="text" name="city" placeholder="Enter your city" class="box" maxlength="50" required>
-         </div>
-         <div class="inputBox">
-            <span>State :</span>
-            <input type="text" name="state" placeholder="Enter your state" class="box" maxlength="50" required>
-         </div>
-         <div class="inputBox">
-            <span>Country :</span>
-            <input type="text" name="country" placeholder="Enter your country" class="box" maxlength="50" required>
-         </div>
-         <div class="inputBox">
-            <span>Postal Code :</span>
-            <input type="number" min="0" name="pin_code" placeholder="Postal Code" min="0" max="999999" onkeypress="if(this.value.length == 6) return false;" class="box" required>
-         </div>
-      </div>
+               <span>Your Name :</span>
+               <?php
+                  $username = '';
+                  if($user_id != ''){
+                        $stmt = $conn->prepare("SELECT name FROM users WHERE id = ?");
+                        $stmt->execute([$user_id]);
+                        if($stmt->rowCount() > 0){
+                           $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                           $username = $row['name'];
+                        }
+                  }
+               ?>
+               <input type="text" name="name" placeholder="Enter your name" class="box" maxlength="20" value="<?= htmlspecialchars($username); ?>" required>
+            </div>
 
-      <input type="submit" name="order" class="btn <?= ($grand_total > 1)?'':'disabled'; ?>" value="place order">
+            <div class="inputBox">
+               <span>Your Contact Number :</span>
+               <?php 
+                  $phone = '';
+                  if($user_id != ''){
+                        $stmt = $conn->prepare("SELECT phonenum FROM users WHERE id = ?");
+                        $stmt->execute([$user_id]);
+                        if($stmt->rowCount() > 0){
+                           $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                           $phone = $row['phonenum'];
+                        }
+                  }
+               ?>
+               <input type="number" name="number" placeholder="Enter your contact number" class="box" min="0" max="9999999999" value="<?= htmlspecialchars($phone); ?>" required maxlength="10">
+            </div>
 
+            <div class="inputBox">
+               <span>Your Email :</span>
+               <?php
+               // 从数据库中获取用户的电子邮件
+                  $email = '';
+                  if ($user_id != '') {
+                     $stmt = $conn->prepare("SELECT email FROM users WHERE id = ?");
+                     $stmt->execute([$user_id]);
+                     if ($stmt->rowCount() > 0) {
+                           $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                           $email = $row['email'];
+                     }
+                  }
+               ?>
+               <input type="email" name="email" placeholder="Enter your email" value="<?= htmlspecialchars($email); ?>" class="box" maxlength="50" required>
+         </div>
+
+            <div class="inputBox">
+                <span>Payment Method :</span>
+                <select name="method" class="box" required>
+                <option value="Cash on delivery">Cash on delivery</option>
+                <option value="TNG eWallet">TNG eWallet</option>
+                <option value="Pay with card">Pay with card</option>
+                </select>
+            </div>
+            <div class="inputBox">
+                <span>Address :</span>
+                <select name="flat" class="box" required>
+                <option value="" disabled selected>Select Address</option>
+                <?php
+
+                // 从数据库中选择地址
+                $sql = "SELECT address1, address2, address3 FROM users";
+                $stmt = $conn->query($sql);
+
+                // 检查是否有结果
+                if ($stmt->rowCount() > 0) {
+                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        if (!empty($row["address1"])) {
+                            echo '<option value="' . htmlspecialchars($row["address1"]) . '">' . htmlspecialchars($row["address1"]) . '</option>';
+                        }
+                        if (!empty($row["address2"])) {
+                            echo '<option value="' . htmlspecialchars($row["address2"]) . '">' . htmlspecialchars($row["address2"]) . '</option>';
+                        }
+                        if (!empty($row["address3"])) {
+                            echo '<option value="' . htmlspecialchars($row["address3"]) . '">' . htmlspecialchars($row["address3"]) . '</option>';
+                        }
+                    }
+                } else {
+                    echo '<option value="" disabled>No addresses found</option>';
+                }
+
+                ?>
+                </select>
+            </div>
+        </div>
+
+        <input type="submit" name="order" class="btn <?= ($grand_total > 1) ? '' : 'disabled'; ?>" value="place order">
+      </form>
    </form>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include 'components/footer.php'; ?>
 
