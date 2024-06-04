@@ -112,7 +112,7 @@ if(isset($_POST['order'])){
          </div>
          <div class="inputBox">
             <span>Your Contact Number :</span>
-            <input type="number" name="number" placeholder="enter your contact number" class="box" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false;" required>
+            <input type="number" name="number" placeholder="enter your contact number" class="box" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false;" required >
          </div>
          <div class="inputBox">
             <span>Your Email :</span>
