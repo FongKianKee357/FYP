@@ -1,5 +1,10 @@
 <?php
-$token = $_GET["token"];
+$token = $_GET["token"] ?? null;
+
+if ($token === null) {
+    die("Token not found");
+}
+
 $token_hash = hash("sha256", $token);
 
 // 包含 connect.php 文件以初始化 $conn
@@ -12,15 +17,39 @@ $stmt->execute([$token_hash]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user === false) {
-    die("token not found");
-}
-
-if (strtotime($user["Reset_passExpires"]) <= time()) {
-    die("token has expired");
+    die("Token not found or expired");
 }
 
 // 在这里设置用户ID变量
 $user_id = $user['id'];
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $password = $_POST["password"];
+    $password_confirmation = $_POST["password_confirmation"];
+    $specialChars = '/!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+    if (strlen($password) < 6){
+        $message[] = 'Password must be at least 6 characters';
+    } else if (!preg_match('/[' . preg_quote($specialChars, '/') . ']/', $password)){
+        $message[] = 'Password must contain at least one special character';
+    } else if ($password !== $password_confirmation){
+        $message[] = 'Passwords must match';
+    } else {
+        $password_hash = sha1($password); // 使用 SHA1 哈希密码
+        $sql = "UPDATE users
+                SET password = ?,
+                    Reset_passToken = NULL,
+                    Reset_passExpires = NULL
+                WHERE id = ?";
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$password_hash, $user["id"]]);
+        
+        $message[] = 'Password updated. You can now login.';
+        
+        header("Refresh: 2; URL = http://localhost/FYP/user_login.php");
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +66,7 @@ $user_id = $user['id'];
     <?php include 'components/user_header.php'; ?>
 
     <section class="form-container">
-        <form method="post" action="confirm_pass.php">
+        <form method="post" action="">
             <h3>Reset Password</h3>
             <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
             <input type="password" id="password" name="password" class="box" placeholder="New Password" required>

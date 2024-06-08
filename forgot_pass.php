@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
                 $message[] = "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
             }
         } else {
-            $message[] = 'No user found with that email.';
+            $message[] = 'Invalid email.';
         }
 
         $stmt->close();
@@ -69,8 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
     <section class="form-container">
         <form action="forgot_pass.php" method="POST">
             <h3>Forgot Password</h3>
-            <input type="email" name="email" placeholder="Enter your email" class="box">
-            <button type="submit" class="option-btn">Reset Password</button>
+            <input type="email" name="email" placeholder="Enter Your Email" class="box">
+            <button type="submit" class="btn">Reset Password</button>
         </form>
     </section>
 
