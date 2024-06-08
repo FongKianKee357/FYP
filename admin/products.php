@@ -98,7 +98,7 @@ if(isset($_GET['delete'])){
 
 </head>
 <body>
-
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <?php include '../components/admin_header.php'; ?>
 
 <section class="add-products">
