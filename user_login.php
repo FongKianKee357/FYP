@@ -51,12 +51,14 @@ if(isset($_POST['submit'])){
       .forgot_font:hover{
          color: var(--orange);
       }
+
+      .font{
+    
+      }
    </style>
    
-   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-   <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -68,10 +70,10 @@ if(isset($_POST['submit'])){
 
    <form action="" method="post">
       <h3>login now</h3>
-      <input type="email" name="email" required placeholder="Enter your email" maxlength="50"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="pass" required placeholder="Enter your password" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="email" name="email" required placeholder="Enter Your Email" maxlength="50"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" name="pass" required placeholder="Enter Your Password" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="submit" value="login now" class="btn" name="submit">
-      <p>don't have an account?</p>
+      <p class="font">Don't Have An Account?</p>
       <a href="user_register.php" class="option-btn">register now</a>
       <a href="forgot_pass.php" class="forgot_font">Forgot Password</a>
    </form>
@@ -80,7 +82,14 @@ if(isset($_POST['submit'])){
 
 <?php include 'components/footer.php'; ?>
 
-<script src="js/script.js"></script>
-
 </body>
 </html>
+<script src="js/script.js"></script>
+<script>
+   setTimeout(function() {
+      var errorMessages = document.querySelectorAll('.message');
+      errorMessages.forEach(function(errorMessage) {
+         errorMessage.style.display = 'none';
+      });
+   }, 2500);
+</script>

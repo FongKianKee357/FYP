@@ -14,7 +14,6 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-    // 检查邮箱是否已经存在
     $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
     $select_user->execute([$email]);
     if ($select_user->rowCount() > 0) {
@@ -24,11 +23,9 @@ if (isset($_POST['submit'])) {
         $token_hash = hash("sha256", $token);
         $expiry = date("Y-m-d H:i:s", time() + 60 * 30);
 
-        // 插入用户邮箱和token到数据库
         $insert_token = $conn->prepare("INSERT INTO `users` (email, verification_token, verification_expiry) VALUES (?, ?, ?)");
         $insert_token->execute([$email, $token_hash, $expiry]);
 
-        // 发送验证邮件
         require 'mailer.php';
         $mail->setFrom('lowrenxing2003@gmail.com');
         $mail->addAddress($email);
@@ -72,6 +69,8 @@ if (isset($_POST['submit'])) {
 
 <?php include 'components/footer.php'; ?>
 
+</body>
+</html>
 <script src="js/script.js"></script>
 <script>
    setTimeout(function() {
@@ -81,5 +80,3 @@ if (isset($_POST['submit'])) {
       });
    }, 3000);
 </script>
-</body>
-</html>

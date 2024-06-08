@@ -3,7 +3,6 @@
 require __DIR__ . "/components/connect.php";
 $user_id = '';
 
-// 如果请求方法为POST且email字段被设置
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
     $email = $_POST["email"];
     $token = bin2hex(random_bytes(16));
@@ -48,7 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
 
     $mysqli->close();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
     <title>Forget Password</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-    <!-- custom css file link  -->
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -76,14 +73,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
 
     <?php include 'components/footer.php'; ?>
 
-    <script src="js/script.js"></script>
-    <script>
-        setTimeout(function() {
-            var errorMessages = document.querySelectorAll('.message');
-            errorMessages.forEach(function(errorMessage) {
-                errorMessage.style.display = 'none';
-            });
-        }, 3000);
-</script>
 </body>
 </html>
+<script src="js/script.js"></script>
+<script>
+   setTimeout(function() {
+      var errorMessages = document.querySelectorAll('.message');
+      errorMessages.forEach(function(errorMessage) {
+         errorMessage.style.display = 'none';
+      });
+   }, 2500);
+</script>

@@ -7,10 +7,8 @@ if ($token === null) {
 
 $token_hash = hash("sha256", $token);
 
-// 包含 connect.php 文件以初始化 $conn
 require __DIR__ . "/components/connect.php";
 
-// 使用 $conn 进行查询
 $sql = "SELECT * FROM users WHERE Reset_passToken = ?";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$token_hash]);
@@ -20,7 +18,6 @@ if ($user === false) {
     die("Token not found or expired");
 }
 
-// 在这里设置用户ID变量
 $user_id = $user['id'];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -35,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else if ($password !== $password_confirmation){
         $message[] = 'Passwords must match';
     } else {
-        $password_hash = sha1($password); // 使用 SHA1 哈希密码
+        $password_hash = sha1($password); 
         $sql = "UPDATE users
                 SET password = ?,
                     Reset_passToken = NULL,
@@ -62,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- 包含 user_header.php 文件 -->
+
     <?php include 'components/user_header.php'; ?>
 
     <section class="form-container">
@@ -77,6 +74,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <?php include 'components/footer.php'; ?>
 
-    <script src="js/script.js"></script>
 </body>
 </html>
+<script src="js/script.js"></script>
+<script>
+   setTimeout(function() {
+      var errorMessages = document.querySelectorAll('.message');
+      errorMessages.forEach(function(errorMessage) {
+         errorMessage.style.display = 'none';
+      });
+   }, 2500);
+</script>
