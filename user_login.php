@@ -39,6 +39,19 @@ if(isset($_POST['submit'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>login</title>
+   <style>
+      .forgot_font{
+         font-size: 16px;
+         color: var(--light-color);
+         margin: 16px;
+         margin-bottom: 0px;
+         display: block;
+      }
+
+      .forgot_font:hover{
+         color: var(--orange);
+      }
+   </style>
    
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -60,7 +73,7 @@ if(isset($_POST['submit'])){
       <input type="submit" value="login now" class="btn" name="submit">
       <p>don't have an account?</p>
       <a href="user_register.php" class="option-btn">register now</a>
-      <a href="forgot_pass.php">Forgot Password</a>
+      <a href="forgot_pass.php" class="forgot_font">Forgot Password</a>
    </form>
 
 </section>

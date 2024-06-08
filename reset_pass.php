@@ -29,20 +29,25 @@ $user_id = $user['id'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- 包含 user_header.php 文件 -->
     <?php include 'components/user_header.php'; ?>
-    <h1>Reset Password</h1>
-    
-    <!-- 修改文件名 -->
-    <form method="post" action="confirm_pass.php">
-        <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
-        <label for="password">New password</label>
-        <input type="password" id="password" name="password">
-        <label for="password_confirmation">Repeat password</label>
-        <input type="password" id="password_confirmation" name="password_confirmation">
-        <button>Send</button>
-    </form>
+
+    <section class="form-container">
+        <form method="post" action="confirm_pass.php">
+            <h3>Reset Password</h3>
+            <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
+            <input type="password" id="password" name="password" class="box" placeholder="New Password" required>
+            <input type="password" id="password_confirmation" name="password_confirmation" class="box" placeholder="Repeat Password" required>
+            <button type="submit" class="btn">Send</button>
+        </form>
+    </section>
+
+    <?php include 'components/footer.php'; ?>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

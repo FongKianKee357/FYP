@@ -4,104 +4,81 @@ include 'components/connect.php';
 
 session_start();
 
-if(isset($_SESSION['user_id'])){
-   $user_id = $_SESSION['user_id'];
-}else{
-   $user_id = '';
-};
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+} else {
+    $user_id = '';
+}
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-   $name = $_POST['name'];
-   $name = filter_var($name, FILTER_SANITIZE_STRING);
-   $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
-   $pass = sha1($_POST['pass']);
-   $pass = filter_var($pass, FILTER_SANITIZE_STRING);
-   $cpass = sha1($_POST['cpass']);
-   $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+    // 检查邮箱是否已经存在
+    $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
+    $select_user->execute([$email]);
+    if ($select_user->rowCount() > 0) {
+        $message[] = 'Email already exists!';
+    } else {
+        $token = bin2hex(random_bytes(16));
+        $token_hash = hash("sha256", $token);
+        $expiry = date("Y-m-d H:i:s", time() + 60 * 30);
 
-   $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
-   $select_user->execute([$email,]);
-   $row = $select_user->fetch(PDO::FETCH_ASSOC);
+        // 插入用户邮箱和token到数据库
+        $insert_token = $conn->prepare("INSERT INTO `users` (email, verification_token, verification_expiry) VALUES (?, ?, ?)");
+        $insert_token->execute([$email, $token_hash, $expiry]);
 
-   function hasSpecialCharacter($password) {
-      $specialChars = '/!@#$%^&*()_+-=[]{}|;:,.<>?';
-      return preg_match('/[' . preg_quote($specialChars, '/') . ']/', $password);
-   }
+        // 发送验证邮件
+        require 'mailer.php';
+        $mail->setFrom('lowrenxing2003@gmail.com');
+        $mail->addAddress($email);
+        $mail->Subject = 'Email Verification';
+        $mail->Body = "Click <a href='http://localhost/FYP/verity_email.php?token=$token'>here</a> to verify your email and set your password.";
 
-   $valid = true;
 
-   if($select_user->rowCount() > 0){
-      $message[] = 'Email already exists!';
-      $valid = false; 
-   }
-
-   if($pass != $cpass) {
-      $message[] = 'Confirm password not matched!';
-      $valid = false; 
-   } elseif(strlen($_POST['pass']) < 6) {
-      $message[] = 'Password is too short (minimum is 6 characters)';
-      $valid = false; 
-   } elseif(!hasSpecialCharacter($_POST['pass'])) {
-      $message[] = 'Password must contain at least one special character';
-      $valid = false; 
-   }
-
-   if($valid) {
-      $insert_user = $conn->prepare("INSERT INTO `users`(name, email, password) VALUES(?,?,?)");
-      $insert_user->execute([$name, $email, $pass]);
-      $message[] = 'Registered successfully, login now please!';
-   }
-}     
+        try {
+            $mail->send();
+            $message[] = 'Verification email sent!';
+        } catch (Exception $e) {
+            $message[] = "Mailer error: {$mail->ErrorInfo}";
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>register</title>
-   
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
    
 <?php include 'components/user_header.php'; ?>
 
 <section class="form-container">
-
-   <form action="" method="post">
-      <h3>register now</h3>
-      <input type="text" name="name" required placeholder="Enter your username" maxlength="20"  class="box">
-      <input type="email" name="email" required placeholder="Enter your email" maxlength="50"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="pass" required placeholder="Enter your password" maxlength="50" minlength="6" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="cpass" required placeholder="Confirm your password" maxlength="50" minlength="6" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="submit" value="register now" class="btn" name="submit">
-      <p>already have an account?</p>
-      <a href="user_login.php" class="option-btn">login now</a>
-   </form>
-   
+    <form action="" method="post">
+        <h3>Register Now</h3>
+        <input type="email" name="email" required placeholder="Enter your email" maxlength="50" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+        <input type="submit" value="Register Now" class="btn" name="submit">
+        <p>Already have an account?</p>
+        <a href="user_login.php" class="option-btn">Login now</a>
+    </form>
 </section>
 
 <?php include 'components/footer.php'; ?>
 
 <script src="js/script.js"></script>
 <script>
-   setTimeout(function() 
-   {
+   setTimeout(function() {
       var errorMessages = document.querySelectorAll('.message');
-      errorMessages.forEach(function(errorMessage) 
-      {
+      errorMessages.forEach(function(errorMessage) {
          errorMessage.style.display = 'none';
       });
-
    }, 3000);
 </script>
 </body>
