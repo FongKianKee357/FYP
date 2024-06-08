@@ -60,21 +60,10 @@ if(isset($_POST['submit'])){
       <input type="submit" value="login now" class="btn" name="submit">
       <p>don't have an account?</p>
       <a href="user_register.php" class="option-btn">register now</a>
+      <a href="forgot_pass.php">Forgot Password</a>
    </form>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include 'components/footer.php'; ?>
 
