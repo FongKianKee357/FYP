@@ -46,6 +46,10 @@ html{
 body{
    /* background-color: #57cdff; */
    background-image: url(../images/Admin_page.jpg);
+   background-size: cover; /* 覆蓋整個容器 */
+  background-size: contain; /* 使圖片完全顯示在容器內 */
+  background-size: 100% 100%; /* 拉伸圖片以填充容器 */
+  background-repeat: no-repeat; /* 防止圖片重複 */
 }
 
 section{
@@ -56,7 +60,7 @@ section{
 
 .heading{
    font-size: 4rem;
-   color:var(--black);
+   color: rgb(192, 147, 255);
    margin-bottom: 2rem;
    text-align: center;
    text-transform: uppercase;
