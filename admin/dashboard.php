@@ -156,7 +156,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
             </section>
         </div>
     </div>
-
+    
     <script src="../js/admin_script.js"></script>
     <script>
         function toggleSidebar() {

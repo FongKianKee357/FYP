@@ -21,7 +21,7 @@
 }
 
 *::selection{
-   background-color: var(--main-color);
+   background-color: #bbdfee;
    color:var(--white);
 }
 
