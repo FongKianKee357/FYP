@@ -44,7 +44,8 @@ html{
 }
 
 body{
-   background-color: #57cdff;
+   /* background-color: #57cdff; */
+   background-image: url(../images/Admin_page.jpg);
 }
 
 section{
