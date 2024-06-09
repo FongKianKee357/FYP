@@ -641,8 +641,8 @@ section{
 }
 
 .form-container form p{
-   font-size: 2rem;
-   color:var(--light-color);
+   font-size: 16px;
+   color: var(--light-color);
    margin:1.5rem 0;
 }
 
@@ -1091,6 +1091,7 @@ section{
    width: 100%;
    border-radius: 5px;
 }
+
 
 
 @media (max-width:991px){
