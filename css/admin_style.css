@@ -44,8 +44,7 @@ html{
 }
 
 body{
-   background-color: var(--light-bg);
-   /* padding-bottom: 10rem; */
+   background-color: #57cdff;
 }
 
 section{
@@ -303,7 +302,7 @@ section{
 .dashboard .box-container .box p{
    padding:1.3rem;
    border-radius: .5rem;
-   background-color: var(--light-bg);
+   background-color: var (--light-bg);
    font-size: 1.7rem;
    color:var(--light-color);
    margin:1rem 0;
@@ -544,9 +543,73 @@ section{
    color:var(--main-color);
 }
 
+.main-container {
+   display: flex;
+   min-height: 100vh;
+}
 
+.sidebar {
+   width: 250px;
+   background: var(--black);
+   color: var(--white);
+   flex-shrink: 0;
+   transition: width 0.3s ease;
+}
 
+.sidebar.collapsed {
+   width: 80px;
+}
 
+.sidebar .logo {
+   text-align: center;
+   padding: 1rem 0;
+   font-size: 2rem;
+}
+
+.sidebar .menu {
+   list-style: none;
+   padding: 0;
+}
+
+.sidebar .menu li {
+   padding: 1rem;
+   cursor: pointer;
+}
+
+.sidebar .menu li:hover {
+   background: var(--main-color);
+}
+
+.sidebar .menu li i {
+   margin-right: 1rem;
+}
+
+.sidebar.collapsed .menu li i {
+   margin-right: 0;
+}
+
+.sidebar.collapsed .menu li span {
+   display: none;
+}
+
+.content {
+   flex-grow: 1;
+   padding: 2rem;
+}
+
+.toggle-sidebar-btn {
+   font-size: 2rem;
+   cursor: pointer;
+   position: fixed;
+   top: 1rem;
+   left: 1rem;
+   z-index: 1100;
+   color: var(--main-color);
+   background: var(--white);
+   padding: 0.5rem;
+   border-radius: 0.5rem;
+   box-shadow: var(--box-shadow);
+}
 
 @media (max-width:991px){
 
