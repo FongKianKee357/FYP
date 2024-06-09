@@ -556,19 +556,31 @@ section{
 .sidebar {
    width: 250px;
    background: var(--black);
-   color: var(--white);
+   color: white;
    flex-shrink: 0;
    transition: width 0.3s ease;
+   font-size: 16px; /* 調整字體大小 */
+   overflow: hidden; /* 隱藏溢出的內容 */
 }
 
 .sidebar.collapsed {
-   width: 80px;
+   width: 0;
+}
+
+.sidebar ul li a {
+   color: white; /* 將字體顔色設置為白色 */
+   visibility: visible; /* 確保文字可見 */
+}
+
+.sidebar.collapsed ul li a {
+   visibility: hidden; /* 當側邊欄收起時，將文字隱藏 */
 }
 
 .sidebar .logo {
    text-align: center;
    padding: 1rem 0;
    font-size: 2rem;
+   color: #90cbf3;
 }
 
 .sidebar .menu {

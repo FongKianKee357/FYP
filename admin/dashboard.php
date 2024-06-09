@@ -31,29 +31,38 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
     <div class="main-container">
         <aside class="sidebar">
             <ul class="menu">
-                <li><i class="fas fa-home"></i> <span>Home</span></li>
-                <li><i class="fas fa-user"></i> <span>Profile</span></li>
-                <li><i class="fas fa-cogs"></i> <span>Settings</span></li>
+                <li><a href="#" class="logo">Boutique Handcraft Model House</a></li>
+                <li><a href="./products.php">Products</a></li>
+                <li><a href="./placed_orders.php">Orders</a></li>
+                <li><a href="./admin_accounts.php">Admins</a></li>
+                <li><a href="./users_accounts.php">Users</a></li>
+                <li><a href="./messages.php">Messages</a></li>
             </ul>
         </aside>
         <div class="content">
             <button class="toggle-sidebar-btn" onclick="toggleSidebar()">☰</button>
             <header class="header">
                 <div class="flex">
-                    <a href="#" class="logo">Admin <span>Panel</span></a>
                     <nav class="navbar">
-                        <a href="#">Dashboard</a>
-                        <a href="#">Products</a>
-                        <a href="#">Orders</a>
+                        <a href="../home.php" class="logo">Boutique Handcraft Model House</a>
                     </nav>
                     <div class="icons">
                         <div id="menu-btn" class="fas fa-bars"></div>
-                        <div class="fas fa-user" onclick="toggleProfile()"></div>
+                        <div id="user-btn" class="fas fa-user"></div>
                     </div>
                     <div class="profile">
-                        <p><?= htmlspecialchars($fetch_profile['name']); ?></p>
-                        <a href="update_profile.php" class="option-btn">Profile</a>
-                        <a href="logout.php" class="delete-btn">Logout</a>
+                        <?php
+                            $select_profile = $conn->prepare("SELECT * FROM `admins` WHERE id = ?");
+                            $select_profile->execute([$admin_id]);
+                            $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+                        ?>
+                        <p><?= $fetch_profile['name']; ?></p>
+                        <a href="../admin/update_profile.php" class="btn">update profile</a>
+                        <div class="flex-btn">
+                            <a href="../admin/register_admin.php" class="option-btn">register</a>
+                            <a href="../admin/admin_login.php" class="option-btn">login</a>
+                        </div>
+                        <a href="../components/admin_logout.php" class="delete-btn" onclick="return confirm('logout from the website?');">logout</a> 
                     </div>
                 </div>
             </header>
@@ -159,12 +168,11 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
     
     <script src="../js/admin_script.js"></script>
     <script>
-        function toggleSidebar() {
-            document.querySelector('.sidebar').classList.toggle('collapsed');
-        }
-
         function toggleProfile() {
             document.querySelector('.profile').classList.toggle('active');
+        }
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('collapsed');
         }
     </script>
 </body>
