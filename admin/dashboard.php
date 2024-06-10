@@ -31,7 +31,10 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
     <div class="main-container">
         <aside class="sidebar">
             <ul class="menu">
-                <li><a href="#" class="logo">Boutique Handcraft Model House</a></li>
+                <br>
+                <br>
+                <br>
+                <li><a href="#" class="logo">Welcome to <span>Boutique Handcraft Model House</span></a></li>
                 <li><a href="./products.php">Products</a></li>
                 <li><a href="./placed_orders.php">Orders</a></li>
                 <li><a href="./admin_accounts.php">Admins</a></li>
