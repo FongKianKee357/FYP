@@ -14,7 +14,8 @@
 
 *{
    font-family: 'Nunito', sans-serif;
-   margin:0; padding:0;
+   margin: inherit;
+   padding: 4px;
    box-sizing: border-box;
    outline: none; border:none;
    text-decoration: none;
@@ -47,9 +48,9 @@ body{
    /* background-color: #57cdff; */
    background-image: url(../images/Admin_page.jpg);
    background-size: cover; /* 覆蓋整個容器 */
-  background-size: contain; /* 使圖片完全顯示在容器內 */
-  background-size: 100% 100%; /* 拉伸圖片以填充容器 */
-  background-repeat: no-repeat; /* 防止圖片重複 */
+   background-size: contain; /* 使圖片完全顯示在容器內 */
+   background-size: 100% 100%; /* 拉伸圖片以填充容器 */
+   background-repeat: no-repeat; /* 防止圖片重複 */
 }
 
 section{
