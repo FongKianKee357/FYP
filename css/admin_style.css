@@ -104,11 +104,8 @@ section{
 }
 
 .flex-btn{
-   padding: .5rem;
-   overflow: hidden;
    padding: 8px;
    margin: 2px;
-   height: 280px;
 }
 
 .box .flex-btn{
@@ -397,6 +394,10 @@ section{
    font-size: 1.5rem;
    color:var(--light-color);
    line-height: 2;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   width: 280px;
 }
 
 .update-product form{
