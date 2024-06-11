@@ -9,7 +9,7 @@
    --light-color:#777;
    --light-bg:#f5f5f5;
    --border:.2rem solid var(--black);
-   --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+   --box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
 }
 
 *{
@@ -71,16 +71,18 @@ section{
 .delete-btn,
 .option-btn{
    display: block;
-   width: 100%;
+   width: auto; /* Change width to auto */
    height: 43px;
    margin-top: 1rem;
    border-radius: .5rem;
-   padding:1rem 3rem;
+   padding: 1rem 3rem;
    font-size: 1.7rem;
    text-transform: capitalize;
-   color:var(--white);
+   color: var(--white);
    cursor: pointer;
-   text-align: center;
+   text-align: center; /* Center align text */
+   background-color: var(--btn-bg); /* Set a background color */
+   border: none; /* Remove default border */
 }
 
 .btn:hover,
@@ -285,6 +287,7 @@ section{
    gap:1.5rem;
    justify-content: center;
    align-items: flex-start;
+
 }
 
 .dashboard .box-container .box{
@@ -499,21 +502,24 @@ section{
    gap:1.5rem;
    align-items: flex-start;
    justify-content: center;
+   padding: 2rem;
+   padding-top: .5rem;
+   border-radius: .5rem;
 }
 
 .accounts .box-container .box{
-   padding:2rem;
-   padding-top: .5rem;
-   border-radius: .5rem;
-   text-align: center;
-   border:var(--border);
-   background-color: var(--white);
-   box-shadow: var(--box-shadow);
-   width: 300px;
-   height: 250px;
+   height: 230px;
    overflow: hidden;
    white-space: nowrap;
    text-overflow: ellipsis;
+   background-color: #fff;
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   padding: 20px;
+   margin: 10px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   transition: transform 0.2s;
+   align-items: center; /* Center align items horizontally */
 }
 
 .accounts .box-container .box p{
@@ -523,7 +529,8 @@ section{
 }
 
 .accounts .box-container .box p span{
-   color:var(--main-color);
+   font-weight: bold;
+   color: #555;
 }
 
 .contacts .box-container{
