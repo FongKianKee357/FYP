@@ -509,6 +509,11 @@ section{
    border:var(--border);
    background-color: var(--white);
    box-shadow: var(--box-shadow);
+   width: 300px;
+   height: 250px;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
 }
 
 .accounts .box-container .box p{
