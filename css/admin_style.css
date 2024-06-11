@@ -470,12 +470,18 @@ section{
 }
 
 .orders .box-container .box{
-   padding:2rem;
-   padding-top: 1rem;
+   padding: 2rem; /* 整體的padding */
+   padding-top: 1rem; /* 頂部padding */
+   box-sizing: border-box; /* 包含padding和border在內部計算 */
    border-radius: .5rem;
-   border:var(--border);
+   border: var(--border);
    background-color: var(--white);
    box-shadow: var(--box-shadow);
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   width: 330px;
+   height: 580px;
 }
 
 .orders .box-container .box p{
