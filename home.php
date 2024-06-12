@@ -260,8 +260,15 @@ swiper.el.addEventListener('mouseleave', function () {
     swiper.autoplay.start();
 });
 
+   setTimeout(function() {
+      var errorMessages = document.querySelectorAll('.message');
+      errorMessages.forEach(function(errorMessage) {
+         errorMessage.style.display = 'none';
+      });
+   }, 2500);
 
 </script>
+
 
 </body>
 </html>
