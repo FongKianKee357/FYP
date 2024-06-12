@@ -9,12 +9,13 @@
    --light-color:#777;
    --light-bg:#f5f5f5;
    --border:.2rem solid var(--black);
-   --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+   --box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
 }
 
 *{
    font-family: 'Nunito', sans-serif;
-   margin:0; padding:0;
+   margin: inherit;
+   padding: 4px;
    box-sizing: border-box;
    outline: none; border:none;
    text-decoration: none;
@@ -46,6 +47,10 @@ html{
 body{
    /* background-color: #57cdff; */
    background-image: url(../images/Admin_page.jpg);
+   background-size: cover; /* 覆蓋整個容器 */
+   background-size: contain; /* 使圖片完全顯示在容器內 */
+   background-size: 100% 100%; /* 拉伸圖片以填充容器 */
+   background-repeat: no-repeat; /* 防止圖片重複 */
 }
 
 section{
@@ -56,7 +61,7 @@ section{
 
 .heading{
    font-size: 4rem;
-   color:var(--black);
+   color: rgb(192, 147, 255);
    margin-bottom: 2rem;
    text-align: center;
    text-transform: uppercase;
@@ -66,16 +71,18 @@ section{
 .delete-btn,
 .option-btn{
    display: block;
-   width: 100%;
+   width: auto; /* Change width to auto */
    height: 43px;
    margin-top: 1rem;
    border-radius: .5rem;
-   padding:1rem 3rem;
+   padding: 1rem 3rem;
    font-size: 1.7rem;
    text-transform: capitalize;
-   color:var(--white);
+   color: var(--white);
    cursor: pointer;
-   text-align: center;
+   text-align: center; /* Center align text */
+   background-color: var(--btn-bg); /* Set a background color */
+   border: none; /* Remove default border */
 }
 
 .btn:hover,
@@ -97,8 +104,8 @@ section{
 }
 
 .flex-btn{
-   padding: .5rem;
-    overflow: hidden;
+   padding: 8px;
+   margin: 2px;
 }
 
 .box .flex-btn{
@@ -123,7 +130,7 @@ section{
 
 .message span{
    font-size: 2rem;
-   color:var(--black);
+   color: rgb(144, 3, 226);
 }
 
 .message i{
@@ -280,6 +287,7 @@ section{
    gap:1.5rem;
    justify-content: center;
    align-items: flex-start;
+
 }
 
 .dashboard .box-container .box{
@@ -386,6 +394,10 @@ section{
    font-size: 1.5rem;
    color:var(--light-color);
    line-height: 2;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   width: 280px;
 }
 
 .update-product form{
@@ -458,12 +470,18 @@ section{
 }
 
 .orders .box-container .box{
-   padding:2rem;
-   padding-top: 1rem;
+   padding: 2rem; /* 整體的padding */
+   padding-top: 1rem; /* 頂部padding */
+   box-sizing: border-box; /* 包含padding和border在內部計算 */
    border-radius: .5rem;
-   border:var(--border);
+   border: var(--border);
    background-color: var(--white);
    box-shadow: var(--box-shadow);
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   width: 330px;
+   height: 580px;
 }
 
 .orders .box-container .box p{
@@ -494,16 +512,25 @@ section{
    gap:1.5rem;
    align-items: flex-start;
    justify-content: center;
+   padding: 2rem;
+   padding-top: .5rem;
+   border-radius: .5rem;
 }
 
 .accounts .box-container .box{
-   padding:2rem;
-   padding-top: .5rem;
-   border-radius: .5rem;
-   text-align: center;
-   border:var(--border);
-   background-color: var(--white);
-   box-shadow: var(--box-shadow);
+   height: 230px;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   background-color: #fff;
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   margin: 10px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   transition: transform 0.2s;
+   align-items: center; /* Center align items horizontally */
+   padding: 10px 20px;
+   margin-bottom: 20px;
 }
 
 .accounts .box-container .box p{
@@ -513,7 +540,8 @@ section{
 }
 
 .accounts .box-container .box p span{
-   color:var(--main-color);
+   font-weight: bold;
+   color: #555;
 }
 
 .contacts .box-container{
@@ -552,19 +580,31 @@ section{
 .sidebar {
    width: 250px;
    background: var(--black);
-   color: var(--white);
+   color: white;
    flex-shrink: 0;
    transition: width 0.3s ease;
+   font-size: 16px; /* 調整字體大小 */
+   overflow: hidden; /* 隱藏溢出的內容 */
 }
 
 .sidebar.collapsed {
-   width: 80px;
+   width: 0;
+}
+
+.sidebar ul li a {
+   color: white; /* 將字體顔色設置為白色 */
+   visibility: visible; /* 確保文字可見 */
+}
+
+.sidebar.collapsed ul li a {
+   visibility: hidden; /* 當側邊欄收起時，將文字隱藏 */
 }
 
 .sidebar .logo {
    text-align: center;
    padding: 1rem 0;
-   font-size: 2rem;
+   font-size: 2.5rem;
+   color: #90cbf3;
 }
 
 .sidebar .menu {
@@ -575,6 +615,7 @@ section{
 .sidebar .menu li {
    padding: 1rem;
    cursor: pointer;
+   font-size: 2rem;
 }
 
 .sidebar .menu li:hover {
@@ -591,6 +632,7 @@ section{
 
 .sidebar.collapsed .menu li span {
    display: none;
+   color: rgb(144, 3, 226);
 }
 
 .content {
