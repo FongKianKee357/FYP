@@ -15,6 +15,8 @@
 
    <section class="flex">
 
+      <!-- add logo -->
+      <img src="../images/logo.png" alt="LOGO">
       <a href="home.php" class="logo"><span>Boutique Handcraft Model House</span></a>
 
       <nav class="navbar">

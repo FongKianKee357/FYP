@@ -54,16 +54,17 @@ $conn = null;
         }
 
         h2{
-            color: white;
+            color: black;
             font-size: 4rem;
+            text-transform: uppercase;
         }
 
         .content {
             flex-grow: 1;
-            padding: 20px;
+            padding: 0px;
         }
         
-        p {
+        .p_p {
             font-size: 2em; /* 字體變大 */
             font-weight: bold; /* 字體加粗 */
             color: purple; /* 字體顏色變為紫色 */
@@ -76,6 +77,23 @@ $conn = null;
             color: purple; /* 字體顏色變為紫色 */
             text-shadow: 2px 2px 5px white; /* 添加白色陰影 */
         }
+
+        .welcome{
+            text-align: left;
+            padding: 0px 1rem;
+            font-size: 28px;
+            color: #90cbf3;
+        }
+        
+        img{
+            height: 150px;
+            width: 150px;
+        }
+
+        .logo{
+            text-align: center;
+            height: 150px;
+        }
     
     </style>
 </head>
@@ -83,8 +101,7 @@ $conn = null;
     <div class="main-container">
         <aside class="sidebar">
             <ul class="menu">
-                <br><br><br>
-                <li><a href="#" class="logo">Welcome to <span>Boutique Handcraft Model House</span></a></li>
+                <div class="logo"><img src="../images/logo.png" alt="LOGO"></div>
                 <li><a href="./products.php">Products</a></li>
                 <li><a href="./placed_orders.php">Orders</a></li>
                 <li><a href="./admin_accounts.php">Admins</a></li>
@@ -106,7 +123,7 @@ $conn = null;
                         <div id="user-btn" class="fas fa-user"></div>
                     </div>
                     <div class="profile">
-                        <p><?= $fetch_profile['name']; ?></p>
+                        <p class="p_p"><?= $fetch_profile['name']; ?></p>
                         <a href="../admin/update_profile.php" class="btn">update profile</a>
                         <div class="flex-btn">
                             <a href="../admin/register_admin.php" class="option-btn">register</a>
@@ -121,7 +138,7 @@ $conn = null;
                 <div class="box-container">
                     <div class="box">
                         <h3>Admin</h3>
-                        <p><?= htmlspecialchars($fetch_profile['name']); ?></p>
+                        <p class="p_p"><?= htmlspecialchars($fetch_profile['name']); ?></p>
                         <a href="update_profile.php" class="btn">Update Profile</a>
                     </div>
                 </div>
@@ -130,7 +147,7 @@ $conn = null;
             <section id="salereport" class="chart-container">
                 <h2>Sale Report</h2>
                     <div class="box-container">
-                        <p>This report shows the monthly sales data.</p>
+                        <p class="p_p">This report shows the monthly sales data.</p>
                     </div>
                 <canvas id="salesChart"></canvas>
             </section>
