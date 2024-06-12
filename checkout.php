@@ -169,8 +169,9 @@ if(isset($_POST['order'])){
                 <?php
 
                 // 从数据库中选择地址
-                $sql = "SELECT address1, address2, address3 FROM users";
-                $stmt = $conn->query($sql);
+                $sql = "SELECT address1, address2, address3 FROM users Where id=?";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([$user_id]);
 
                 // 检查是否有结果
                 if ($stmt->rowCount() > 0) {
