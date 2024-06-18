@@ -107,8 +107,6 @@ $conn = null;
                 <li><a href="./admin_accounts.php">Admins</a></li>
                 <li><a href="./users_accounts.php">Users</a></li>
                 <li><a href="./messages.php">Messages</a></li>
-                <!-- 添加指向销售报告的链接 -->
-                <li><a href="#salesReport">Sales Report</a></li>
             </ul>
         </aside>
         <div class="content">
