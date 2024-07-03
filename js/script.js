@@ -24,5 +24,13 @@ subImages.forEach(images =>{
       src = images.getAttribute('src');
       mainImage.src = src;
    }
+
+   setTimeout(function() {
+      var errorMessages = document.querySelectorAll('.message');
+      errorMessages.forEach(function(errorMessage) {
+         errorMessage.style.display = 'none';
+      });
+   }, 2500);
+
 });
 

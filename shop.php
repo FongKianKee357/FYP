@@ -72,20 +72,20 @@ include 'components/wishlist_cart.php';
 </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
 <?php include 'components/footer.php'; ?>
 
 <script src="js/script.js"></script>
+
+<script>
+
+setTimeout(function() {
+      var errorMessages = document.querySelectorAll('.message');
+      errorMessages.forEach(function(errorMessage) {
+         errorMessage.style.display = 'none';
+      });
+   }, 2500);
+
+</script>
 
 </body>
 </html>
